@@ -192,29 +192,27 @@ ff() {
 fft() {
   find . -iname "*$**" -not -path "*/node_modules/**" -not -path "*/bower_components/**"| while read line; do echo "$(gstat -c "%Y %p %u %g" $line), $line"; done|sort|ack --passthru "$1"
 }
-# function sudoff() { find . -iname "*$1*" 2>/dev/null | gegrep -Ei -e "^|$1" --color=auto ; }
-# function ffe() { sudo find . -iname "$1" 2>/dev/null | gegrep -ie ^|"$1" --color=auto ;  }
-# function ffl() { sudo find "$(pwd)" -iname "*$1*" 2>/dev/null -exec gls -l --color=auto '{}' \;  }
-# function ffd() { sudo find . -type d -depth 2 -iname "*$1*" -exec gls -d --color=always {} \; |gack "$1" --passthru  }
-# function modffexec() { sudo find "$(pwd)" -type f -iname "$1" -exec "$2" '{}' \; }
-# function modfindbasename() { sudo find "$(pwd)" -iname "$1" -exec basename '{}' \;  }
-# function modfinddot() { sudo find . -iname "$1" ;}
-# function modfinddotbname() { sudo find . -iname "$1" -exec basename '{}' \; }
+function sudoff() { find . -iname "*$1*" 2>/dev/null | gegrep -Ei -e "^|$1" --color=auto ; }
+function ffe() { sudo find . -iname "$1" 2>/dev/null | gegrep -ie ^|"$1" --color=auto ;  }
+function ffl() { sudo find "$(pwd)" -iname "*$1*" 2>/dev/null -exec gls -l --color=auto '{}' \;  }
+function ffd() { sudo find . -type d -depth 2 -iname "*$1*" -exec gls -d --color=always {} \; |gack "$1" --passthru  }
+function modffexec() { sudo find "$(pwd)" -type f -iname "$1" -exec "$2" '{}' \; }
+function modfindbasename() { sudo find "$(pwd)" -iname "$1" -exec basename '{}' \;  }
+function modfinddot() { sudo find . -iname "$1" ;}
+function modfinddotbname() { sudo find . -iname "$1" -exec basename '{}' \; }
 function mktar() { gtar -cpvzf "$2" "$1" ;} ## gtar "SOURCE" "NAME"
-# alias mktaru=" echo 'sudo gtar -cpvzf [source] [name]'"
-# function modprintDateAdded() { mdls -name kMDItemDateAdded -raw "$1"}
-# function modsetdate() { sudo SetFile -d "$(gdate '+%m/%d/%y %H:%M:%S')" "$1" ; }
-# function show() { gll "$1" ; shift ; }
-# function showall() { cd "$1" && gls -AR ; cd - 1>/dev/null || exit; }
-# function hl() { gegrep -ie ^|"$1" --color=auto ;}
-# function hlonly() { gegrep -ie "$1" --color=auto ;}
+alias mktaru=" echo 'sudo gtar -cpvzf [source] [name]'"
+function modprintDateAdded() { mdls -name kMDItemDateAdded -raw "$1"}
+function modsetdate() { sudo SetFile -d "$(gdate '+%m/%d/%y %H:%M:%S')" "$1" ; }
+function show() { gll "$1" ; shift ; }
+function showall() { cd "$1" && gls -AR ; cd - 1>/dev/null || exit; }
+function hl() { gegrep -ie ^|"$1" --color=auto ;}
+function hlonly() { gegrep -ie "$1" --color=auto ;}
 function ff-filetypes() { find . -type f -exec basename '{}' \; | egrep -E -o "\.{1}\w*(-)?(\w*)$" | sort -u }
 #----------------------------------------------------
-# TREE
-# ---------------------------------------------------
-# alias mtop=" top -o cpu -n 10 -a"
-# alias mdu=" sudo gdu -d 1 -h | gsort -h"
-# alias gopath=" cpath ; osascript /Users/localUser/Library/Application\ Scripts/gpathscript.scpt ; "
+alias mtop=" top -o cpu -n 10 -a"
+alias mdu=" sudo gdu -d 1 -h | gsort -h"
+alias gopath=" cpath ; osascript /Users/localUser/Library/Application\ Scripts/gpathscript.scpt ; "
 #----------------------------------------------------
 # GIT
 # ---------------------------------------------------
@@ -222,7 +220,7 @@ alias gsbc=" git show-branch --current"
 alias gconfig=" git config --list"
 alias ghelp=" git config help"
 alias gfrom=" git config --get remote.origin.url"
-# alias gst=" git status"
+alias gst=" git status"
 alias grao=" git remote add origin"
 alias grso=" git remote show origin"
 alias grecent=" git recent -a"
@@ -264,30 +262,35 @@ alias tf=" tree -A -I 'node_modules|bower_components' --timefmt=%F --dirsfirst -
 alias tsize=" tree -A -L 1 -h -I 'node_modules|bower_components' --dirsfirst --du --sort=size"
 alias tmtime=" tree -A -L 1 -D -r --sort=mtime --timefmt=%F --noreport"
 alias tctime=" tree -A -L 1 -D -r --sort=ctime --timefmt=%F --noreport"
-# function setcom() {setfcomment -c "$1" -c $2}
+
+function setcom() {setfcomment -c "$1" -c $2}
+
 tfind() {
   tree -f -P "*$**" --prune
 }
+
 tfindt() {
   tree -f -P "*$**" --sort=mtime --timefmt=%F --prune
 }
+
 # #time=$(gdate +%m%d%y-%H%M%S-) ;
-# alias checkdylib=" otool -L **/**.dylib|sed '/^$/d;G'"
-# alias hash=" hash|gsed -r 's/=/\n /g'|gack '^\w+' --passthru"
-# alias mmv='noglob zmv -W'
-# alias pk=" pidof -k"
+alias checkdylib=" otool -L **/**.dylib|sed '/^$/d;G'"
+alias hash=" hash|gsed -r 's/=/\n /g'|gack '^\w+' --passthru"
+alias mmv='noglob zmv -W'
+alias pk=" pidof -k"
 # com.apple.apsd.launchd
 # com.apple.security-common.plist
-# find . -type l -xtype l
-# find . -type l | xargs file | grep broken
-# fn() { print -z print The time now is $(date); }
-# mount|gegrep -E "\s/.*\b\s" --color
+find . -type l -xtype l
+find . -type l | xargs file | grep broken
+
+mount|gegrep -E "\s/.*\b\s" --color
 
 
-# sudo cat /etc/passwd |egrep -E "\d+" --color
-# sudo gfind '/usr/local' -exec gstat -c "%a-%u-%g %N" '{}' \+ >files.txt;
-# tree -a -R -P "*Default*" -f --prune|ack Default --passthru
+sudo cat /etc/passwd |egrep -E "\d+" --color
+sudo gfind '/usr/local' -exec gstat -c "%a-%u-%g %N" '{}' \+ >files.txt;
+tree -a -R -P "*Default*" -f --prune|ack Default --passthru
 ##id -Gn|tr ' ' '\n'
+
 alias fixjs=" fixjsstyle --nojsdoc"
 alias gitlg3=" tpr; git lg3; tps"
 alias lsdotfiles='find . -type f -maxdepth 1 -name "*\.*"'
@@ -305,12 +308,15 @@ alias termreset=" ttyctl -f"
 alias tmtimel=" tmtime -ugpA"
 alias wdl=" wd list|sort -k 3"
 alias dv=" dirs -v"
+
 ffiname() {
   find . -iname "*$**"
 }
+
 wdp() {
   wd path "*$**"
 }
+
 pathfinder() {
     cpath
     osascript /Users/localUser/Library/Application\ Scripts/gpathscript.scpt
