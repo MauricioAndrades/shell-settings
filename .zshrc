@@ -108,8 +108,7 @@ zstyle ':completion:*' original true
 zstyle ':completion:*' substitute 0
 zstyle ':completion:*' use-compctl true
 zstyle :compinstall filename '/User/Path/.zshrc'
-# source "$ZSH/oh-my-zsh.sh"
-# export HOMEBREW_GITHUB_API_TOKEN="91183e004cbb59fb5ad79f7b95570ed3d941345e"
+source "$ZSH/oh-my-zsh.sh"
 export MAILCHECK=0
 export EDITOR='subl -a -w'
 export DISABLE_UNTRACKED_FILES_DIRTY="true"
@@ -117,8 +116,8 @@ export HIST_STAMPS="mm/dd/yyyy"
 export HIST_SAVE_NO_DUPS="true"
 export HIST_IGNORE_SPACE="true"
 export ARCHFLAGS="-arch x86_64"
-# export MONITOR="true"
-# source '/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh'
+export MONITOR="true"
+source '/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh'
 function chpwd(){
   echo '\n' ;
   gls -hFXCNA -t -q --group-directories-first --color=auto ;
@@ -128,22 +127,6 @@ function chpwd(){
 alias mdv="/User/Path/bin/terminal_markdown_viewer/mdv.py"
 alias ..="cd .."
 alias canary-debug="/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary --remote-debugging-port=9222"
-alias catz="cat ~/.zshrc"
-alias cdap=" cd /User/Path/Library/Application\ Support"
-alias cdapps=" cd /Applications"
-alias cddesk=" cd ~/Desktop"
-alias cddevtools="cd /User/Path/Documents/gschool/dev-tools"
-alias cddocs=" cd /User/Path/Documents"
-alias cddown=" cd ~/Downloads"
-alias cdgclones="cd /User/Path/Documents/gschool/dev-tools/github-clones"
-alias cdgschool=" cd /User/Path/Documents/gschool"
-alias cdop=" cd /Users/Op"
-alias cdoplib=" cd /User/Path/Library"
-alias cdopprefs=" cd ~/Library/Preferences"
-alias cdproj="/User/Path/Documents/gschool/proj"
-alias cdramdisk="cd /Volumes/ramdisk"
-alias cdst3=" cd /User/Path/Library/Application\ Support/Sublime\ Text\ 3"
-alias cdst3usr=" cd /User/Path/Library/Application\ Support/Sublime\ Text\ 3/Packages/User"
 alias clear_ram=" sudo purge"
 alias cpl=" tr -d '\n' |pbcopy" # pwd | cpl ==> copy current line
 alias dsed=" sed '/^$/d;G'"
@@ -203,7 +186,7 @@ alias lslaunchd="sudo launchctl list"
 alias lsopencaches="lsof | grep /Library/Caches"
 alias lsreservedwords=" compgen -k"
 alias lssysinfo=" system_profiler -detailLevel mini"
-alias lsusers="dscl . -list /Users PrimaryGroupID | grep [gid]"
+alias lsusers="dscl . -list /Users PrimaryGroupID"
 alias lsvariables=" compgen -v"
 alias mod_checksecuritystatus=" spctl --status"
 alias mod_clear_fonts-cache="sudo atsutil databases -remove"
